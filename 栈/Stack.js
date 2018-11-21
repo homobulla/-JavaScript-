@@ -70,6 +70,23 @@ const divideBy2 = decNumber => {
     }
     return binaryString
 }
+
+// 在一个简陋的进制转化函数可以不用模拟栈再使用，直接用数组。
+const divideBy = decNumber => {
+    let remStack = [],
+        rem,
+        binaryString = ''
+    while (decNumber > 0) {
+        rem = Math.floor(decNumber % 2)
+        remStack.push(rem)
+        decNumber = Math.floor(decNumber / 2)
+    }
+    while (remStack.length) {
+        binaryString += remStack.pop()
+    }
+    return binaryString
+}
+console.log(divideBy(10), 111)
 // 任意进制
 function baseConverter(decNumber, base) {
     var remStack = new Stack(),

@@ -85,7 +85,27 @@ function PriorityQueue() {
     }
 }
 let priorityQueue = new PriorityQueue()
-priorityQueue.enqueue('John', 2)
-priorityQueue.enqueue('Jack', 1)
-priorityQueue.enqueue('Camila', 1)
-priorityQueue.print()
+// priorityQueue.enqueue('John', 2)
+// priorityQueue.enqueue('Jack', 1)
+// priorityQueue.enqueue('Camila', 1)
+// priorityQueue.print()
+
+// 循环队列
+function hotPotato(nameList, num) {
+    let queue = new Queue() // {1}
+    queue.enqueue(...nameList)
+    queue.print()
+    let eliminated = ''
+    while (queue.size() > 1) {
+        for (let i = 0; i < num; i++) {
+            queue.enqueue(queue.dequeue()) // {3}
+            // console.log(queue.print(), 'queue')
+        }
+        eliminated = queue.dequeue() // {4}
+        console.log(eliminated + '在击鼓传花游戏中被淘汰。')
+    }
+    return queue.dequeue() // {5}
+}
+let names = ['John', 'Jack', 'Camila', 'Ingrid', 'Carl']
+let winner = hotPotato(names, 7)
+console.log('The winner is: ' + winner)
