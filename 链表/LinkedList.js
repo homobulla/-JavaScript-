@@ -74,20 +74,40 @@ function LinkedList() {
             return null
         }
     }
-    this.remove = function(element) {}
-    this.indexOf = function(element) {}
-    this.isEmpty = function() {}
-    this.size = function() {}
-    this.getHead = function() {}
-    this.toString = function() {
-        let current = head, //{1}
-            string = '' //{2}
+    this.remove = function(element) {
+        let index = this.indexOf(element)
+        return this.removeAt(index)
+    }
+    this.indexOf = function(element) {
+        let current = head,
+            index = -1
         while (current) {
-            //{3}
-            string += current.element + (current.next ? 'n' : '') //{4}
-            current = current.next //{5}
+            if (element === current.element) {
+                return index
+            }
+            index++
+            current = current.next
         }
-        return string //{6}
+        return -1
+    }
+    this.isEmpty = function() {
+        return length === 0
+    }
+    this.size = function() {
+        return length
+    }
+    this.getHead = function() {
+        return head
+        // head变量的私有性，需要用专门方法抛出
+    }
+    this.toString = function() {
+        let current = head,
+            string = ''
+        while (current) {
+            string += current.element + (current.next ? '\n' : '')
+            current = current.next
+        }
+        return string
     }
     this.print = function() {}
 }
